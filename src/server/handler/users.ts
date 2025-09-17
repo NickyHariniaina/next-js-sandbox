@@ -1,36 +1,24 @@
+import { prisma } from "@/lib/prisma";
 import { User } from "@/types/user";
 import { NextRequest, NextResponse } from "next/server";
 
-const mockData: (User | null)[] = [
-  {
-    username: "NickyHariniaina",
-    firstname: "Nicky",
-    lastname: "Hariniaina",
-    age: 18,
-    birthday: "2024-04-12",
-    student: true,
-    status: true,
-  },
-  {
-    username: "TokioSan",
-    firstname: "Tokio",
-    lastname: "Nalt",
-    age: 20,
-    birthday: "2024-04-12",
-    student: true,
-    status: false,
-  },
-];
-
-export const GEThandler = (req: NextRequest) => {
+export const GEThandler = async (req: NextRequest) => {
+  const data: User[] = await prisma.user.findMany();
   return NextResponse.json({
-    data: mockData,
+    data: data,
   });
 };
 
 export const POSThandler = async (req: NextRequest) => {
-  const user: User | null = await req.json();
-  mockData.push(user);
+  const user: User = await req.json();
+  const newUser = await prisma.user.create({
+    data: {
+      email: user.email,
+      username: user.username,
+      password: user.password,
+      age: 23,
+    },
+  });
   return NextResponse.json({
     message: "Data added successfully",
   });

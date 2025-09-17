@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../card";
-import { Badge } from "../badge";
 import { Button } from "../button";
 import { Pen, Trash } from "lucide-react";
 import {
@@ -33,7 +32,7 @@ const CardComponents = (props: CardProps) => {
         <CardDescription>This is a card for any users</CardDescription>
         <CardAction className="flex flex-row gap-3">
           <Sheet>
-            <SheetTrigger>
+            <SheetTrigger asChild>
               <Button variant="outline">
                 <Pen />
                 Modify
@@ -55,12 +54,8 @@ const CardComponents = (props: CardProps) => {
       </CardHeader>
       <CardContent>
         <div className="p-3 flex flex-col gap-3 m-3">
-          <p className="flex flex-row gap-2">
-            {props.user.lastname}
-
-            <Badge>{props.user.status ? "Actif" : "Suspendu"}</Badge>
-          </p>
-          <p>{props.user.firstname}</p>
+          <p className="flex flex-row gap-2">{props.user.email}</p>
+          <p>{props.user.age}</p>
         </div>
       </CardContent>
       <CardFooter></CardFooter>

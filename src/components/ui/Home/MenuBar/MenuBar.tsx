@@ -5,7 +5,8 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Plus } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "../../popover";
 
 export default function MenuBar() {
   return (
@@ -19,6 +20,15 @@ export default function MenuBar() {
               <p>User profil</p>
             </div>
           </MenubarItem>
+          <Popover>
+            <PopoverTrigger>
+              <div className="flex flex-row gap-2">
+                <Plus />
+                <p>Add User</p>
+              </div>
+            </PopoverTrigger>
+            <PopoverContent>Hello</PopoverContent>
+          </Popover>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

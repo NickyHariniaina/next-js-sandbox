@@ -1,9 +1,7 @@
 export type User = {
-  username: string;
-  firstname: string;
-  lastname: string;
-  age: number;
-  birthday: string;
-  student: boolean;
-  status: boolean;
+  id: number;
+  username: string | null;
+  email: string;
+  password: string;
+  age: number | null;
 };
